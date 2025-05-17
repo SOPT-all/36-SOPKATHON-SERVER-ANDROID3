@@ -15,13 +15,13 @@ public class RecipeStory {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long story_id;
+	private Long storyId;
 
-	private String recipe_story;
+	private String recipeStory;
 
 
 	@OneToOne
-	@JoinColumn(name = "recipe_id",nullable = false)
+	@JoinColumn(name = "recipeId",nullable = false)
 	private Recipe recipe;
 
 }

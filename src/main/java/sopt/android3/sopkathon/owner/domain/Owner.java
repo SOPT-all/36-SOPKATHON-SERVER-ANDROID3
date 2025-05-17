@@ -12,12 +12,12 @@ public class Owner {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long owner_id;
+	private Long ownerId;
 
-	private String owner_name;
+	private String ownerName;
 
-	private String owner_image;
+	private String ownerImage;
 
-	private String owner_residence;
+	private String ownerResidence;
 
 }

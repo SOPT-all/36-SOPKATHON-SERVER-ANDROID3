@@ -7,5 +7,5 @@ import sopt.android3.sopkathon.region.domain.Region;
 
 @Repository
 public interface RegionRepository extends JpaRepository<Region,Long> {
-
+    Region findByRegionId(Long regionId);
 }

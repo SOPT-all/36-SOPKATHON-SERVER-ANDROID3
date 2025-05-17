@@ -22,20 +22,22 @@ public class Recipe {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long recipe_id;
+	private Long recipeId;
 
-	private String thumbnail_image;
+	private String thumbnailImage;
 
-	private String thumbnail_url;
+	private String thumbnailUrl;
 
-	private Long recipe_level;
+	private Long recipeLevel;
 
-	private String recipe_time;
+	private String recipeTime;
 
-	private Boolean recipe_scrap;
+	private Boolean recipeScrap;
+
+	private String recipeDescription;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "region_id", nullable = false)
+	@JoinColumn(name = "regionId", nullable = false)
 	private Region region;
 
 
@@ -43,12 +45,8 @@ public class Recipe {
 	private List<Ingredient> ingredients;
 
 
-	@OneToOne
-	@JoinColumn(name = "owner_id",nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "ownerId",nullable = false)
 	private Owner owner;
-
-
-
-
 
 }
