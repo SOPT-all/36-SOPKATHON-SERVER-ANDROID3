@@ -11,4 +11,5 @@ import sopt.android3.sopkathon.recipe.domain.Recipe;
 public interface RecipeRepository extends JpaRepository<Recipe,Long> {
 
 	Recipe findByRecipeId(Long recipeId);
+	List<Recipe> findAllByRecipeScrapTrue();
 }

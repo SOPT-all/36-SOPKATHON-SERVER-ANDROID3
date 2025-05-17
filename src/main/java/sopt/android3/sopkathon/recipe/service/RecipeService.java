@@ -9,8 +9,10 @@ import lombok.RequiredArgsConstructor;
 import sopt.android3.sopkathon.ingredient.domain.Ingredient;
 import sopt.android3.sopkathon.ingredient.repository.IngredientRepository;
 import sopt.android3.sopkathon.owner.domain.Owner;
+import sopt.android3.sopkathon.owner.repository.OwnerJpaRepository;
 import sopt.android3.sopkathon.recipe.domain.Recipe;
 import sopt.android3.sopkathon.recipe.dto.RecipeResponse;
+import sopt.android3.sopkathon.recipe.dto.RecipeScrapListResponse;
 import sopt.android3.sopkathon.recipe.repository.RecipeRepository;
 import sopt.android3.sopkathon.recipeStory.domain.RecipeStory;
 import sopt.android3.sopkathon.recipeStory.repository.RecipeStoryRepository;
@@ -28,6 +30,7 @@ public class RecipeService {
 	private final RecipeStoryRepository recipeStoryRepository;
 	private final ReviewRepository reviewRepository;
 	private final RecommendRepository recommendRepository;
+    private final OwnerJpaRepository ownerRepository;
 
 
 	@Transactional(readOnly = true)
@@ -55,6 +58,28 @@ public class RecipeService {
 			.recommends(recommends)
 			.build();
 	}
+
+    public RecipeScrapListResponse getScrappedRecipes() {
+        List<Recipe> scrappedRecipes = recipeRepository.findAllByRecipeScrapTrue();
+
+        List<RecipeScrapListResponse.RecipeItem> recipeItems = scrappedRecipes.stream()
+                .map(recipe -> {
+                    Owner owner = ownerRepository.findById(recipe.getOwner().getOwnerId())
+                            .orElseThrow(() -> new RuntimeException("Owner not found"));
+
+                    return new RecipeScrapListResponse.RecipeItem(
+                            recipe.getRecipeId(),
+                            owner.getOwnerResidence(),
+                            "마늘 통닭",
+                            recipe.getThumbnailImage(),
+                            recipe.getRecipeLevel().intValue(),
+                            recipe.getRecipeTime()
+                    );
+                })
+                .toList();
+
+        return new RecipeScrapListResponse(recipeItems.size(), recipeItems);
+    }
 
 
 }
