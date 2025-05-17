@@ -33,6 +33,7 @@ public class RecipeResponse {
 
 	private Long story_id;
 	private String recipe_story;
+	private String recipe_small_title;
 
 	private List<ReviewResponse> reviews;
 	private List<RecommendResponse> recommends;
@@ -41,7 +42,7 @@ public class RecipeResponse {
 	public RecipeResponse(Long recipe_id, String thumbnail_image, String thumbnail_url,String recipe_title,
 		Long recipe_level, String recipe_time, Boolean recipe_scrap, List<Ingredient> ingredients, Long owner_id,
 		String owner_name, String owner_image, String owner_residence, List<String> recipe, Long story_id,
-		String recipe_story,
+		String recipe_story, String recipe_small_title,
 		List<Review> reviews, List<Recommend> recommends) {
 		this.recipe_id = recipe_id;
 		this.recipe_title = recipe_title;
@@ -51,7 +52,7 @@ public class RecipeResponse {
 		this.recipe_time = recipe_time;
 		this.recipe_scrap = recipe_scrap;
 		this.ingredients = ingredients.stream()
-			.map(ingredient -> new IngredientResponse(ingredient.getIngredientId(),ingredient.getIngredientImage(),ingredient.getIngredientName(),ingredient.getIngredientAmount())).toList();
+			.map(ingredient -> new IngredientResponse(ingredient.getIngredientId(),ingredient.getIngredientImage(),ingredient.getIngredientName(),ingredient.getIngredientAmount(),ingredient.getIsLocal())).toList();
 		this.owner_id = owner_id;
 		this.owner_name = owner_name;
 		this.owner_image = owner_image;
@@ -62,6 +63,7 @@ public class RecipeResponse {
 		this.reviews = reviews.stream()
 			.map(review -> new ReviewResponse(review.getReviewId(),review.getReviewContent()))
 			.toList();
+		this.recipe_small_title = recipe_small_title;
 		this.recommends = recommends.stream()
 			.map(recommend -> new RecommendResponse(recommend.getRecommendId(),recommend.getRecommendImg(),recommend.getRecommendStore(),recommend.getRecommendStoreUrl(),recommend.getRecommendItemPrice()))
 			.toList();
