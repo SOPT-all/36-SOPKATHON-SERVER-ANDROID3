@@ -1,0 +1,27 @@
+package sopt.android3.sopkathon.recipeStory.domain;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import lombok.Getter;
+import sopt.android3.sopkathon.recipe.domain.Recipe;
+
+@Getter
+@Entity
+public class RecipeStory {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long story_id;
+
+	private String recipe_story;
+
+
+	@OneToOne
+	@JoinColumn(name = "recipe_id",nullable = false)
+	private Recipe recipe;
+
+}
