@@ -24,6 +24,9 @@ public class Ingredient {
 
 	private String ingredientAmount;
 
+	private Boolean isLocal;
+
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "recipe_id", nullable = false)
 	private Recipe recipe;
