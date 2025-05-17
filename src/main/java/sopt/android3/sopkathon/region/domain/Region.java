@@ -16,11 +16,11 @@ public class Region {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long region_id;
+	private Long regionId;
 
 	private String region;
 
-	private Long recipe_count;
+	private Long recipeCount;
 
 	@OneToMany(mappedBy = "region")
 	private List<Recipe> recipes;
@@ -29,9 +29,9 @@ public class Region {
 
 	}
 
-	public Region(String region, Long recipe_count){
+	public Region(String region, Long recipeCount){
 		this.region = region;
-		this.recipe_count =  recipe_count;
+		this.recipeCount =  recipeCount;
 	}
 
 
