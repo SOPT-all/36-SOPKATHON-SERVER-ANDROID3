@@ -7,22 +7,24 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Getter;
 import sopt.android3.sopkathon.recipe.domain.Recipe;
 
+@Getter
 @Entity
 public class Ingredient {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ingredient_id;
+	private Long ingredientId;
 
-	private String ingredient_image;
+	private String ingredientImage;
 
-	private String ingredient_name;
+	private String ingredientName;
 
-	private String ingredient_amount;
+	private String ingredientAmount;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "recipe_id", nullable = false)
 	private Recipe recipe;
 
