@@ -50,6 +50,7 @@ public class Recipe {
 	private Owner owner;
 
 	private String recipeDescription;
+	private String recipeName;
 
 
 }

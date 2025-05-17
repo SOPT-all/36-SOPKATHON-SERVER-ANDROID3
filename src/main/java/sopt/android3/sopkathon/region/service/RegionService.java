@@ -47,7 +47,7 @@ public class RegionService {
 						owner.getOwnerName(),
 						owner.getOwnerResidence()
 				),
-				"마늘 미역국",
+				recipe.getRecipeName(),
 				recipeStory,
 				recipe.getRecipeLevel(),
 				recipe.getRecipeTime()
