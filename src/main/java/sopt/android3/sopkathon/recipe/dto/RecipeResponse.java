@@ -1,11 +1,15 @@
 package sopt.android3.sopkathon.recipe.dto;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.Builder;
 import lombok.Getter;
 import sopt.android3.sopkathon.ingredient.domain.Ingredient;
 import sopt.android3.sopkathon.ingredient.dto.IngredientResponse;
+import sopt.android3.sopkathon.ingredient.dto.LocalResponse;
 import sopt.android3.sopkathon.recommend.domain.Recommend;
 import sopt.android3.sopkathon.recommend.dto.RecommendResponse;
 import sopt.android3.sopkathon.review.domain.Review;
@@ -22,6 +26,7 @@ public class RecipeResponse {
 	private String recipe_time;
 	private Boolean recipe_scrap;
 
+	private List<LocalResponse> local_ingredients;
 	private List<IngredientResponse> ingredients;
 
 	private Long owner_id;
@@ -51,8 +56,18 @@ public class RecipeResponse {
 		this.recipe_level = recipe_level;
 		this.recipe_time = recipe_time;
 		this.recipe_scrap = recipe_scrap;
+		this.local_ingredients = ingredients.stream()
+			.filter(Ingredient::getIsLocal)
+			.map(ingredient -> new LocalResponse(
+				ingredient.getIngredientId(),
+				ingredient.getIngredientImage(),
+				ingredient.getIngredientName(),
+				ingredient.getIngredientAmount()
+			))
+			.toList();
+
 		this.ingredients = ingredients.stream()
-			.map(ingredient -> new IngredientResponse(ingredient.getIngredientId(),ingredient.getIngredientImage(),ingredient.getIngredientName(),ingredient.getIngredientAmount(),ingredient.getIsLocal())).toList();
+			.map(ingredient -> new IngredientResponse(ingredient.getIngredientId(),ingredient.getIngredientName(),ingredient.getIngredientAmount())).toList();
 		this.owner_id = owner_id;
 		this.owner_name = owner_name;
 		this.owner_image = owner_image;
