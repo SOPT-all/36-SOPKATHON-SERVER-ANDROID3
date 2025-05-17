@@ -1,12 +1,12 @@
 package sopt.android3.sopkathon.recipe.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
-import sopt.android3.sopkathon.ingredient.domain.Ingredient;
 import sopt.android3.sopkathon.ingredient.repository.IngredientRepository;
 import sopt.android3.sopkathon.owner.domain.Owner;
 import sopt.android3.sopkathon.owner.repository.OwnerJpaRepository;
@@ -41,17 +41,19 @@ public class RecipeService {
 		List<Recommend> recommends = recommendRepository.findAllByRecipe(recipe);
 
 		return RecipeResponse.builder()
+				.recipe_id(recipeId)
 			.thumbnail_image(recipe.getThumbnailImage())
 			.thumbnail_url(recipe.getThumbnailUrl())
 			.recipe_level(recipe.getRecipeLevel())
 			.recipe_time(recipe.getRecipeTime())
+			.recipe_title(recipe.getRecipeName())
 			.recipe_scrap(recipe.getRecipeScrap())
 			.ingredients(recipe.getIngredients())
 			.owner_id(recipe.getOwner().getOwnerId())
 			.owner_name(recipe.getOwner().getOwnerName())
 			.owner_image(recipe.getOwner().getOwnerImage())
 			.owner_residence(recipe.getOwner().getOwnerResidence())
-			.recipe_description(recipe.getRecipeDescription())
+			.recipe(Arrays.asList(recipe.getRecipeDescription().split("\n")))
 			.story_id(recipeStory.getStoryId())
 			.recipe_story(recipeStory.getRecipeStory())
 			.reviews(reviews)
@@ -70,7 +72,7 @@ public class RecipeService {
                     return new RecipeScrapListResponse.RecipeItem(
                             recipe.getRecipeId(),
                             owner.getOwnerResidence(),
-                            "마늘 통닭",
+                            recipe.getRecipeName(),
                             recipe.getThumbnailImage(),
                             recipe.getRecipeLevel().intValue(),
                             recipe.getRecipeTime()
