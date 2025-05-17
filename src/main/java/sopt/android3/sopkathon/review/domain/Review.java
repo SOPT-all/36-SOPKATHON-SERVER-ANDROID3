@@ -7,18 +7,20 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Getter;
 import sopt.android3.sopkathon.recipe.domain.Recipe;
 
+@Getter
 @Entity
 public class Review {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long review_id;
+	private Long reviewId;
 
-	private String review_content;
+	private String reviewContent;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "recipe_id", nullable = false)
 	private Recipe recipe;
 
