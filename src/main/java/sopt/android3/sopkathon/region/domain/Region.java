@@ -11,9 +11,11 @@ import java.util.List;
 @Entity
 public class Region {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long regionId;
+
 
     private String region;
 
@@ -22,6 +24,7 @@ public class Region {
 
     @OneToMany(mappedBy = "region")
     private List<Recipe> recipes;
+
 
     public Region() {
 

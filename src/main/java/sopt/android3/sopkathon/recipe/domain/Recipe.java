@@ -34,7 +34,6 @@ public class Recipe {
 
 	private Boolean recipeScrap;
 
-	private String recipeDescription;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "regionId", nullable = false)
@@ -46,7 +45,15 @@ public class Recipe {
 
 
 	@ManyToOne
+
+	@JoinColumn(name = "owner_id",nullable = false)
+	private Owner owner;
+
+	private String recipeDescription;
+
+
 	@JoinColumn(name = "ownerId",nullable = false)
 	private Owner owner;
+
 
 }
