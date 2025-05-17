@@ -52,8 +52,4 @@ public class Recipe {
 	private String recipeDescription;
 
 
-	@JoinColumn(name = "ownerId",nullable = false)
-	private Owner owner;
-
-
 }

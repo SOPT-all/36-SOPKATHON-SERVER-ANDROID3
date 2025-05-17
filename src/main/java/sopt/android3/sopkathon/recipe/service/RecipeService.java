@@ -49,8 +49,8 @@ public class RecipeService {
 			.owner_image(recipe.getOwner().getOwnerImage())
 			.owner_residence(recipe.getOwner().getOwnerResidence())
 			.recipe_description(recipe.getRecipeDescription())
-			.story_id(recipeStory.getStory_id())
-			.recipe_story(recipeStory.getRecipe_story())
+			.story_id(recipeStory.getStoryId())
+			.recipe_story(recipeStory.getRecipeStory())
 			.reviews(reviews)
 			.recommends(recommends)
 			.build();
