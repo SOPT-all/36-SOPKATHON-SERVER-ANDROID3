@@ -6,6 +6,7 @@ public record RecipePreviewResponse(
         RecipeOwner recipe_owner,
         String recipe_name,
         String recipe_story,
+        String recipe_small_title,
         Long recipe_level,
         String cooking_time
 ) {

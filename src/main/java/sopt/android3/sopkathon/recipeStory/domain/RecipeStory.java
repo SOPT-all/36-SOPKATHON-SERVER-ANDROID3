@@ -19,6 +19,8 @@ public class RecipeStory {
 
 	private String recipeStory;
 
+	private String recipeSmallTitle;
+
 
 	@OneToOne
 	@JoinColumn(name = "recipeId",nullable = false)

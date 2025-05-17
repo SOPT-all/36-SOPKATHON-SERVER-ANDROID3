@@ -32,9 +32,8 @@ public class RegionService {
 		Recipe recipe = recipeRepository.findById(recipeId)
 				.orElseThrow(() -> new CustomException(ErrorMessage.NOT_FOUND_ERROR));
 
-		String recipeStory = recipeStoryRepository.findById(recipeId)
-				.map(RecipeStory::getRecipeStory)
-				.orElse("");
+		String recipeStory = recipeStoryRepository.findById(recipeId).get().getRecipeStory();
+		String recipeSmallTitle = recipeStoryRepository.findById(recipeId).get().getRecipeSmallTitle();
 
 		Owner owner = ownerJpaRepository.findById(recipe.getOwner().getOwnerId())
 				.orElseThrow(() -> new CustomException(ErrorMessage.NOT_FOUND_ERROR));
@@ -49,6 +48,7 @@ public class RegionService {
 				),
 				recipe.getRecipeName(),
 				recipeStory,
+				recipeSmallTitle,
 				recipe.getRecipeLevel(),
 				recipe.getRecipeTime()
 

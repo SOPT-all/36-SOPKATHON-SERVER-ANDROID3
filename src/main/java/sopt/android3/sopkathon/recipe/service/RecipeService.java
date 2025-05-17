@@ -56,6 +56,7 @@ public class RecipeService {
 			.recipe(Arrays.asList(recipe.getRecipeDescription().split("\n")))
 			.story_id(recipeStory.getStoryId())
 			.recipe_story(recipeStory.getRecipeStory())
+			.recipe_small_title(recipeStory.getRecipeSmallTitle())
 			.reviews(reviews)
 			.recommends(recommends)
 			.build();
